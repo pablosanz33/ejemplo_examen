@@ -1,24 +1,25 @@
-#* @apiTitle EXAMEN AJM
-#* @apiDescription swager de plumber que tendre que hacer para aprobar el examen
+#* @apiTitle Examen GEB
+#* @apiDescription Swager de plumber que tendré que hacer para aprobar el examen
 
-#* @param En resistencia minima requerida
-#* @param st fuerza minima requerida
-#* @param po potencia minima requerida
-#* @param sp velocidad minima requerida
-#* @param ag agilidad minima requerida
-#* @param fl flexibilidad minima requerida
-#* @param Ne capacidad de concentracion minima requerida
-#* @param Du aguante minima requerida
-#* @param Ha coordinacion minima requerida
-#* @param An capacidad analitica  minima requerida
-#* /consulta deporte
-#creamos la función
-consulta_deporte<-function(df,en=0,st=0,po=0,sp=0,ag=0,
-                           fl=0,ne=0,du=0,ha=0,an=0){
-  deportes<-df %>% 
-    filter(Endurance>en,Strength>st,Power>po,
-           Speed>sp,Agility>ag,Flexibility>fl,Nerve>ne,
-           Durability>du,Hand.eye.coordination>ha,Analytical.Aptitude>an) %>% 
+#*@param En Resistencia mínima requerida
+#*@param St Fuerza minima requerida
+#*@param Po Potencia minima requerida
+#*@param Sp Velocidad minima requerida
+#*@param Ag Agilidad minima requerida
+#*@param Fl Flexibilidad minima requerida
+#*@param Ne Capacidad de concentracion minima requerida
+#*@param Du Aguante minima requerida
+#*@param Ha Coordinacion ojo mano minima requerida
+#*@param An Capacidad analitica minima requerida
+#* @get /consulta_deporte
+consulta_deporte <- function(En, St, Po, Sp, Ag, 
+                             Fl, Ne, Du, Ha, An){
+  df <- read_csv("toughestsport.csv")
+  
+  deportes <- df %>% filter(Endurance > En, Strength > St,
+                            Power > Po, Speed > Sp, Agility > Ag,
+                            Flexibility > Fl, Nerve > Ne, Durability > Du,
+                            `Hand-eye coordination` > Ha, `Analytical Aptitude` > An) %>% 
     select(SPORT)
   return(deportes)
 }
